@@ -1,3 +1,5 @@
+import java.util.HashSet;
+import java.util.Scanner;
 
 /**
  * @author Timothy McWatters
@@ -21,5 +23,47 @@
  */
 
 public class DictionaryOperations {
-
+	private Scanner inputStream = null;
+	private String dictionaryFileName = "dictionary.txt";
+	private HashSet<String> dictionary = null;
+	
+	/*
+	 * Default Constructor
+	 */
+	public DictionaryOperations() {
+		dictionary = new HashSet<String>();
+	}
+	
+	/*
+	 * Reads the dictionary words from the input file
+	 * @parameter dictionaryFileName = The name of the dictionary input file
+	 */
+	public void readDictionaryFile(String dictionaryFileName) {
+		
+	}
+	
+	/*
+	 * populates the HashSet from the input file dictionary words
+	 * 
+	 */
+	public static void populateDictionary() {
+		
+	}
+	
+	/*
+	 * Inserts an individual word into the dictionary HashSet
+	 * @parameter wordToInsert = The word to insert into the dictionary HashSet
+	 */
+	private void insertWordIntoDictionary(String wordToInsert) {
+		
+	}
+	
+	/*
+	 * Checks to see if the dictionary has a particular word
+	 * @parameter wordToCheck = The word to check the dictionary for
+	 * @return boolean = True if dictionary has the word, false if not
+	 */
+	public static boolean dictionaryHasWord(String wordToCheck) {
+		return false;
+	}
 }

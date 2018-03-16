@@ -1,3 +1,4 @@
+import javafx.event.ActionEvent;
 
 /**
  * @author Timothy McWatters
@@ -21,5 +22,12 @@
  */
 
 public class SpellCheckHandler {
-
+	
+	/*
+	 * Handles the Spell Check action
+	 * @parameter action = The action to handle
+	 */
+	public void handle(ActionEvent action) {
+		
+	}
 }

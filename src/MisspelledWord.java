@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 /**
  * @author Timothy McWatters
@@ -21,5 +22,49 @@
  */
 
 public class MisspelledWord {
-
+	private static final int sizeOfAlphabet = 26;
+	private String misspelledWord = "";
+	private ArrayList<String> suggestedWords = null;
+	
+	/*
+	 * Default Constructor
+	 */
+	public MisspelledWord() {
+		suggestedWords = new ArrayList<String>();
+	}
+	
+	/*
+	 * 
+	 */
+	public void findSuggestions() {
+		
+	}
+	
+	/*
+	 * 
+	 */
+	private void oneLetterMissing() {
+		
+	}
+	
+	/*
+	 * 
+	 */
+	private void oneLetterAdded() {
+		
+	}
+	
+	/*
+	 * 
+	 */
+	private void lettersReversed() {
+		
+	}
+	
+	/*
+	 * 
+	 */
+	public String toString() {
+		return "";
+	}
 }

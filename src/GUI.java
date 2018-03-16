@@ -1,3 +1,4 @@
+import javafx.stage.Stage;
 
 /**
  * @author Timothy McWatters
@@ -21,5 +22,11 @@
  */
 
 public class GUI {
-
+	
+	/*
+	 * 
+	 */
+	public void start(Stage stage) {
+		
+	}
 }

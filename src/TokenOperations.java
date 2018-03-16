@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 /**
  * @author Timothy McWatters
@@ -21,5 +22,35 @@
  */
 
 public class TokenOperations {
-
+	private ArrayList<String> wordsFromInputFile = null;
+	
+	/*
+	 * Default Constructor
+	 */
+	public TokenOperations() {
+		wordsFromInputFile = new ArrayList<String>();
+	}
+	
+	/*
+	 * 
+	 */
+	public static void populateWordsFromInputFile() {
+		
+	}
+	
+	/*
+	 * Delimits a string into tokens
+	 * @parameter stringToDelimit = The string to delimit into tokens
+	 * @return ? = ???
+	 */
+	private String delimitString(String stringToDelimit) {
+		return "";
+	}
+	
+	/*
+	 * 
+	 */
+	public static ArrayList<String> getWordsFromInputFile() {
+		return null;
+	}
 }

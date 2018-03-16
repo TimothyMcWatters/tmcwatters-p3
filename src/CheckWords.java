@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 /**
  * @author Timothy McWatters
@@ -21,5 +22,36 @@
  */
 
 public class CheckWords {
+	private ArrayList<MisspelledWord> wordsNotInDictionary = null;
 
+	/**
+	 * Default constructor
+	 */
+	public CheckWords() {
+		ArrayList<MisspelledWord> wordsNotInDictionary = new ArrayList<MisspelledWord>();
+	}
+
+	/**
+	 * @return the wordsNotInDictionary
+	 */
+	public ArrayList<MisspelledWord> getWordsNotInDictionary() {
+		return wordsNotInDictionary;
+	}
+	
+	/*
+	 * Spell Checks the document
+	 */
+	public void spellCheckDocument() {
+		String wordToCheck = "";
+		boolean wordIsInDictionary = isWordInDictionary(wordToCheck);
+	}
+	
+	/*
+	 * Checks to see if a word is in the dictionary
+	 * @parameter word = The word (String) to check if its in the dictionary
+	 * @return boolean = true if word is in the dictionary, false if the word is not 
+	 */
+	private boolean isWordInDictionary(String word) {
+		return false;
+	}
 }
