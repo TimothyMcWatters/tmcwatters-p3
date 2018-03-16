@@ -23,8 +23,24 @@
 public class SpellCheckTester {
 
 	public static void main(String[] args) {
-		System.out.println("Hi!");
-
+		String fileName = "textBoxFile";
+		String stringToWriteToFile = "Hello\nThis is a test for the textBoxFile\nTest1, Test2";
+		
+		//Create a textBoxFile to write to and write to it
+		FileOperations fileOps = new FileOperations();
+		fileOps.writeToFile(fileName, stringToWriteToFile);
+		
+		//Read and display from textBoxFile
+		fileOps.readFile(fileName);
+		for (int i = 0; i < FileOperations.getLinesFromInputFile().size(); i++) {
+			System.out.println(FileOperations.getLinesFromInputFile(i));
+		}
+		
+		//tokenize into words, and display them
+		new TokenOperations();
+		TokenOperations.populateWordsFromInputFile();
+		for (int i = 0; i < TokenOperations.getWordsFromInputFile().size(); i++) {
+			System.out.println(TokenOperations.getWordsFromInputFile(i));
+		}
 	}
-
 }

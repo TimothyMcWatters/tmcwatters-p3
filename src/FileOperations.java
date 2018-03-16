@@ -1,3 +1,6 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -35,46 +38,69 @@ public class FileOperations {
 		linesFromInputFile = new ArrayList<String>();
 	}
 	
-	/*
-	 * Reads the input file
-	 * @parameter ? = ????
+	/**
+	 * Reads a file line by line, and calls the helper method populateLinesFromFileArrayList to populate an ArrayList
+	 * with each line read in from the file.
+	 * @param fileName = name of the file to read
 	 */
-	public void readFile(String string) {
-		
+	public void readFile(String fileName) {
+		try {
+			inputStream = new Scanner(new FileInputStream(fileName));
+		}
+		catch (FileNotFoundException e) {
+			System.out.println("Error: File " + fileName + " was not found, or could not be opened.");
+			System.exit(0);
+		}
+		while (inputStream.hasNextLine()) {
+			populateLinesFromFileArrayList(inputStream.nextLine());
+		} 
+		inputStream.close();
+	}
+	
+	/**
+	 * Populates an ArrayList with Strings
+	 * @param lineFromFile = The string to populate the ArrayList with
+	 */
+	private static void populateLinesFromFileArrayList(String lineFromFile) {
+		linesFromInputFile.add(lineFromFile);
 	}
 	
 	/*
-	 * Populates lines from the file array list
-	 * @parameter ? = ???
-	 */
-	private static void populateLinesFromFileArrayList(String string) {
-		
-	}
-	
-	/*
-	 * Gets the lines from the input file to populate an ArrayList with them
+	 * Gets the lines from the input file in an ArrayList<String>
 	 * @return linesFromInputFile = An array list of lines read in from the input file
 	 */
 	public static ArrayList<String> getLinesFromInputFile() {
-		return null;
+		return linesFromInputFile;
 	}
 	
-	/*
-	 * Retrieves an element from an array list
-	 * @ elementOfArrayList = ????
-	 * @ return ? = ????
+	/**
+	 * Will return the String located at the index parameter from the 
+	 * ArrayList<String> of Strings read in from the file. 
+	 * @param indexOfArrayList = index of ArrayList<String> that is requested to be returned
+	 * @return lineFromInputFile = The line of the input file that has been stored in the
+	 * ArrayList<String>
 	 */
-	public static String getLinesFromInputFile(int elementOfArrayList) {
-		return "";
+	public static String getLinesFromInputFile(int indexOfArrayList) {
+		return linesFromInputFile.get(indexOfArrayList);
 	}
 	
 	/* 
 	 * Writes to file
-	 * @parameter ? = ????
-	 * @parameter ? = ????
+	 * @parameter outputFileName = The name of the file to write to
+	 * @parameter stringToWriteToFile = The string to write to the file
 	 * 
 	 */
-	public void writeToFile(String string1, String string2) {
-		
+	public void writeToFile(String fileName, String stringToWriteToFile) {
+		try {
+			//attempt to open the file
+			outputStream = new PrintWriter(new FileOutputStream(fileName));
+			outputStream.println(stringToWriteToFile);
+			outputStream.flush();
+			outputStream.close();
+		}
+		catch (FileNotFoundException e) {
+			System.out.println("WARNING: Log file not found.");
+			System.exit(0);
+		}
 	}
 }

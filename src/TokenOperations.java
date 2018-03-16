@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 /**
  * @author Timothy McWatters
@@ -22,7 +23,7 @@ import java.util.ArrayList;
  */
 
 public class TokenOperations {
-	private ArrayList<String> wordsFromInputFile = null;
+	private static ArrayList<String> wordsFromInputFile = null;
 	
 	/*
 	 * Default Constructor
@@ -32,25 +33,41 @@ public class TokenOperations {
 	}
 	
 	/*
-	 * 
+	 * creates an ArrayList<String> of all the words from the input file 
 	 */
 	public static void populateWordsFromInputFile() {
-		
+		for (int i = 0; i < FileOperations.getLinesFromInputFile().size(); i++) {
+			delimitString(FileOperations.getLinesFromInputFile(i));
+		}
 	}
 	
 	/*
-	 * Delimits a string into tokens
+	 * Delimits a string into tokens and places them in an ArrayList<String>
 	 * @parameter stringToDelimit = The string to delimit into tokens
-	 * @return ? = ???
 	 */
-	private String delimitString(String stringToDelimit) {
-		return "";
+	private static void delimitString(String stringToDelimit) {
+		StringTokenizer tokens = new StringTokenizer(stringToDelimit);
+		while (tokens.hasMoreTokens()) {
+			wordsFromInputFile.add(tokens.nextToken());
+		}
 	}
 	
 	/*
-	 * 
+	 * Gets the words from the input file in an ArrayList<String>
+	 * @return wordsFromInputFile = An array list of words read in from the input file
 	 */
 	public static ArrayList<String> getWordsFromInputFile() {
-		return null;
+		return wordsFromInputFile;
+	}
+	
+	/**
+	 * Will return the String located at the index parameter from the 
+	 * ArrayList<String> of words read in from the file. 
+	 * @param indexOfArrayList = index of ArrayList<String> that is requested to be returned
+	 * @return String = The requested word from the input file
+	 * ArrayList<String>
+	 */
+	public static String getWordsFromInputFile(int indexOfArrayList) {
+		return wordsFromInputFile.get(indexOfArrayList);
 	}
 }
