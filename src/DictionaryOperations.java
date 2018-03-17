@@ -1,3 +1,5 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.HashSet;
 import java.util.Scanner;
 
@@ -23,9 +25,9 @@ import java.util.Scanner;
  */
 
 public class DictionaryOperations {
-	private Scanner inputStream = null;
+	private static Scanner inputStream = null;
 	private String dictionaryFileName = "dictionary.txt";
-	private HashSet<String> dictionary = null;
+	private static HashSet<String> dictionary = null;
 	
 	/*
 	 * Default Constructor
@@ -39,23 +41,29 @@ public class DictionaryOperations {
 	 * @parameter dictionaryFileName = The name of the dictionary input file
 	 */
 	public void readDictionaryFile(String dictionaryFileName) {
-		
+		try {
+			inputStream = new Scanner(new FileInputStream(dictionaryFileName));
+		}
+		catch (FileNotFoundException e) {
+			System.out.println("Error: File " + dictionaryFileName + " was not found, or could not be opened.");
+			System.exit(0);
+		}
+		populateDictionary();
 	}
 	
-	/*
-	 * populates the HashSet from the input file dictionary words
-	 * 
-	 */
 	public static void populateDictionary() {
-		
+		while (inputStream.hasNextLine()) {
+			insertWordIntoDictionary(inputStream.nextLine());
+		} 
+		inputStream.close();
 	}
 	
 	/*
 	 * Inserts an individual word into the dictionary HashSet
 	 * @parameter wordToInsert = The word to insert into the dictionary HashSet
 	 */
-	private void insertWordIntoDictionary(String wordToInsert) {
-		
+	private static void insertWordIntoDictionary(String wordToInsert) {
+		dictionary.add(wordToInsert);
 	}
 	
 	/*
@@ -64,6 +72,22 @@ public class DictionaryOperations {
 	 * @return boolean = True if dictionary has the word, false if not
 	 */
 	public static boolean dictionaryHasWord(String wordToCheck) {
-		return false;
+		return dictionary.contains(wordToCheck);
+	}
+	
+	/*
+	 * Getter for dictionaryFileName
+	 * @returns the file name of the dictionary input file
+	 */
+	public String getDictionaryFileName() {
+		return this.dictionaryFileName;
+	}
+	
+	/*
+	 * Setter for dictionaryFileName
+	 * @parameter the file name of the dictionary input file
+	 */
+	public void setDictionaryFileName(String dictionaryFileName) {
+		this.dictionaryFileName = dictionaryFileName;
 	}
 }

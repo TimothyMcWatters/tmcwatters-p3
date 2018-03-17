@@ -28,7 +28,7 @@ public class CheckWords {
 	 * Default constructor
 	 */
 	public CheckWords() {
-		ArrayList<MisspelledWord> wordsNotInDictionary = new ArrayList<MisspelledWord>();
+		wordsNotInDictionary = new ArrayList<MisspelledWord>();
 	}
 
 	/**
@@ -38,20 +38,44 @@ public class CheckWords {
 		return wordsNotInDictionary;
 	}
 	
+	/**
+	 * Will return the String located at the index parameter from the 
+	 * ArrayList<MisspelledWord> of misspelled words. 
+	 * @param indexOfArrayList = index of ArrayList<MisspelledWord> that is requested to be returned
+	 * @return lineFromInputFile = The line of the input file that has been stored in the
+	 * ArrayList<String>
+	 */
+	public MisspelledWord getWordsNotInDictionary(int indexOfArrayList) {
+		return wordsNotInDictionary.get(indexOfArrayList);
+	}
+	
 	/*
-	 * Spell Checks the document
+	 * Spell Checks the document, and creates MisspelledWord Objects if the spelling 
+	 * is not in the dictionary
 	 */
 	public void spellCheckDocument() {
-		String wordToCheck = "";
-		boolean wordIsInDictionary = isWordInDictionary(wordToCheck);
+		boolean wordIsInDictionary = false;
+		
+		for (int i = 0; i < TokenOperations.getWordsFromInputFile().size(); i++) {
+			wordIsInDictionary = isWordInDictionary(TokenOperations.getWordsFromInputFile(i));
+			if (wordIsInDictionary == false) {
+				MisspelledWord misspelledWord = new MisspelledWord();
+				misspelledWord.setMisspelledWord(TokenOperations.getWordsFromInputFile(i));
+				misspelledWord.findSuggestions();
+				wordsNotInDictionary.add(misspelledWord);
+			} else {
+				continue;
+			}
+		}
 	}
 	
 	/*
 	 * Checks to see if a word is in the dictionary
-	 * @parameter word = The word (String) to check if its in the dictionary
+	 * @parameter wordToCheck = The word (String) to check if its in the dictionary
 	 * @return boolean = true if word is in the dictionary, false if the word is not 
 	 */
-	private boolean isWordInDictionary(String word) {
-		return false;
+	private boolean isWordInDictionary(String wordToCheck) {
+		String wordToCheckLowerCase = wordToCheck.toLowerCase();
+		return DictionaryOperations.dictionaryHasWord(wordToCheckLowerCase);
 	}
 }

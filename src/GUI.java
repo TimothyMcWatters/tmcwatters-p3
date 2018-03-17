@@ -1,3 +1,10 @@
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 /**
@@ -21,12 +28,51 @@ import javafx.stage.Stage;
  *		Two letters reversed. 
  */
 
-public class GUI {
+public class GUI extends Application {
 	
 	/*
 	 * 
 	 */
 	public void start(Stage stage) {
+		//Read the dictionary.txt file and populate the dictionary
+		DictionaryOperations dictionaryOps = new DictionaryOperations();
+		dictionaryOps.readDictionaryFile(dictionaryOps.getDictionaryFileName());
 		
+		//create the GUI's menu bar
+		MenuBar menuBar = new MenuBar();
+		
+		//create the menu's for the menu bar
+		Menu file = new Menu();
+		Menu edit = new Menu();
+		
+		//create the items to populate the menu's
+		MenuItem open = new MenuItem();
+		MenuItem save = new MenuItem();
+		MenuItem exit = new MenuItem();
+		MenuItem spellCheck = new MenuItem();
+		
+		//populate the menu's with the menu items
+		file.getItems().addAll(open, save, exit);
+		edit.getItems().addAll(spellCheck);
+		
+		//populate the menu bar with menu's
+		menuBar.getMenus().addAll(file, edit);
+		
+		//create the text area
+		TextArea textArea = new TextArea();
+		textArea.setWrapText(true);
+		
+		BorderPane borderPane = new BorderPane();
+		borderPane.setTop(menuBar);
+		borderPane.setCenter(textArea);
+		Scene scene = new Scene(borderPane, 350, 400);
+		
+		stage.setTitle("Tim's Amazing Spell Checker");
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	public static void main(String[] args) {
+		Application.launch(args);
 	}
 }

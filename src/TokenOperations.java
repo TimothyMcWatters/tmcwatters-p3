@@ -48,7 +48,14 @@ public class TokenOperations {
 	private static void delimitString(String stringToDelimit) {
 		StringTokenizer tokens = new StringTokenizer(stringToDelimit);
 		while (tokens.hasMoreTokens()) {
-			wordsFromInputFile.add(tokens.nextToken());
+			String wordBeforeCommaDotRemoved = tokens.nextToken();
+			if (wordBeforeCommaDotRemoved.endsWith(".") || wordBeforeCommaDotRemoved.endsWith(",")) {
+				int lengthOfWord = wordBeforeCommaDotRemoved.length();
+				String wordAfterCommaDotRemoved = wordBeforeCommaDotRemoved.substring(0, (lengthOfWord - 1));
+				wordsFromInputFile.add(wordAfterCommaDotRemoved);
+			} else {
+				wordsFromInputFile.add(wordBeforeCommaDotRemoved);
+			}
 		}
 	}
 	
