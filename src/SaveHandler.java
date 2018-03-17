@@ -31,10 +31,10 @@ public class SaveHandler implements EventHandler<ActionEvent> {
 	/*
 	 * Default Constructor
 	 */
-	public SaveHandler(TextArea textArea, String fileName, FileOperations fileOps) {
+	public SaveHandler(TextArea textArea, String fileName) {
 		this.textArea = textArea;
 		this.fileName = fileName;
-		this.fileOps = fileOps;
+		this.fileOps = new FileOperations(fileName);
 	}
 	
 	/*
@@ -42,6 +42,6 @@ public class SaveHandler implements EventHandler<ActionEvent> {
 	 * @parameter action = The action to handle
 	 */
 	public void handle(ActionEvent action) {
-		fileOps.writeToFile(fileName, textArea.getText());
+		fileOps.writeToFile(textArea.getText());
 	}
 }

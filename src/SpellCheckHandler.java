@@ -24,15 +24,15 @@ import javafx.scene.control.TextArea;
  */
 
 public class SpellCheckHandler implements EventHandler<ActionEvent> {
-	private FileOperations fileOps;
 	private String fileName;
+	private TextArea textArea;
 	
 	/*
 	 * Default Constructor
 	 */
-	public SpellCheckHandler(String fileName, FileOperations fileOps) {
+	public SpellCheckHandler(String fileName, TextArea textArea) {
 		this.fileName = fileName;
-		this.fileOps = fileOps;
+		this.textArea = textArea;
 	}
 	
 	/*
@@ -40,10 +40,13 @@ public class SpellCheckHandler implements EventHandler<ActionEvent> {
 	 * @parameter action = The action to handle
 	 */
 	public void handle(ActionEvent action) {
-		fileOps.readFile(fileName);
-		new TokenOperations();
-		TokenOperations.populateWordsFromInputFile();
-		CheckWords checkWords = new CheckWords();
+		FileOperations fileOps = new FileOperations(fileName);
+		fileOps.writeToFile(textArea.getText());
+		fileOps.readFile();
+		TokenOperations tokenOps = new TokenOperations(fileOps);
+		tokenOps.populateWordsFromInputFile();
+		CheckWords checkWords = new CheckWords(tokenOps);
+		System.out.println("DOCUMENT HAS BEEN SPELL CHECKED, HERE ARE SOME SUGGESTIONS: \n");
 		checkWords.spellCheckDocument();
 	}
 }

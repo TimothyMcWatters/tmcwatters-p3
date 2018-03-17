@@ -28,14 +28,16 @@ import java.util.Scanner;
 
 public class FileOperations {
 	private Scanner inputStream = null;
-	private static ArrayList<String> linesFromInputFile = null;
+	private ArrayList<String> linesFromInputFile = null;
 	private PrintWriter outputStream = null;
+	private String fileName;
 	
 	/*
 	 * Default Constructor
 	 */
-	public FileOperations() {
+	public FileOperations(String fileName) {
 		linesFromInputFile = new ArrayList<String>();
+		this.fileName = fileName;
 	}
 	
 	/**
@@ -43,7 +45,7 @@ public class FileOperations {
 	 * with each line read in from the file.
 	 * @param fileName = name of the file to read
 	 */
-	public void readFile(String fileName) {
+	public void readFile() {
 		try {
 			inputStream = new Scanner(new FileInputStream(fileName));
 		}
@@ -61,7 +63,7 @@ public class FileOperations {
 	 * Populates an ArrayList with Strings
 	 * @param lineFromFile = The string to populate the ArrayList with
 	 */
-	private static void populateLinesFromFileArrayList(String lineFromFile) {
+	private void populateLinesFromFileArrayList(String lineFromFile) {
 		linesFromInputFile.add(lineFromFile);
 	}
 	
@@ -69,7 +71,7 @@ public class FileOperations {
 	 * Gets the lines from the input file in an ArrayList<String>
 	 * @return linesFromInputFile = An array list of lines read in from the input file
 	 */
-	public static ArrayList<String> getLinesFromInputFile() {
+	public ArrayList<String> getLinesFromInputFile() {
 		return linesFromInputFile;
 	}
 	
@@ -80,7 +82,7 @@ public class FileOperations {
 	 * @return lineFromInputFile = The line of the input file that has been stored in the
 	 * ArrayList<String>
 	 */
-	public static String getLinesFromInputFile(int indexOfArrayList) {
+	public String getLinesFromInputFile(int indexOfArrayList) {
 		return linesFromInputFile.get(indexOfArrayList);
 	}
 	
@@ -90,12 +92,11 @@ public class FileOperations {
 	 * @parameter stringToWriteToFile = The string to write to the file
 	 * 
 	 */
-	public void writeToFile(String fileName, String stringToWriteToFile) {
+	public void writeToFile(String stringToWriteToFile) {
 		try {
 			//attempt to open the file
 			outputStream = new PrintWriter(new FileOutputStream(fileName));
 			outputStream.println(stringToWriteToFile);
-			outputStream.flush();
 			outputStream.close();
 		}
 		catch (FileNotFoundException e) {

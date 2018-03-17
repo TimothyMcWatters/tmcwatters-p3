@@ -39,8 +39,6 @@ public class GUI extends Application {
 		//Read the dictionary.txt file and populate the dictionary
 		DictionaryOperations dictionaryOps = new DictionaryOperations();
 		dictionaryOps.readDictionaryFile(dictionaryOps.getDictionaryFileName());
-		FileOperations fileOps = new FileOperations();
-		fileOps.readFile(fileName);
 		
 		//create the GUI's menu bar
 		MenuBar menuBar = new MenuBar();
@@ -65,10 +63,10 @@ public class GUI extends Application {
 		//create the text area
 		TextArea textArea = new TextArea();
 		textArea.setWrapText(true);
-		OpenHandler openAction = new OpenHandler(textArea);
-		SaveHandler saveAction = new SaveHandler(textArea, fileName, fileOps);
+		OpenHandler openAction = new OpenHandler(textArea, fileName);
+		SaveHandler saveAction = new SaveHandler(textArea, fileName);
 		ExitHandler exitAction = new ExitHandler();
-		SpellCheckHandler spellCheckAction = new SpellCheckHandler(fileName, fileOps);
+		SpellCheckHandler spellCheckAction = new SpellCheckHandler(fileName, textArea);
 	
 		//set menu item actions
 		open.setOnAction(openAction);

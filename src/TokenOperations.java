@@ -24,20 +24,22 @@ import java.util.StringTokenizer;
 
 public class TokenOperations {
 	private static ArrayList<String> wordsFromInputFile = null;
+	FileOperations fileOps;
 	
 	/*
 	 * Default Constructor
 	 */
-	public TokenOperations() {
+	public TokenOperations(FileOperations fileOps) {
+		this.fileOps = fileOps;
 		wordsFromInputFile = new ArrayList<String>();
 	}
 	
 	/*
 	 * creates an ArrayList<String> of all the words from the input file 
 	 */
-	public static void populateWordsFromInputFile() {
-		for (int i = 0; i < FileOperations.getLinesFromInputFile().size(); i++) {
-			delimitString(FileOperations.getLinesFromInputFile(i));
+	public void populateWordsFromInputFile() {
+		for (int i = 0; i < fileOps.getLinesFromInputFile().size(); i++) {
+			delimitString(fileOps.getLinesFromInputFile(i));
 		}
 	}
 	
@@ -45,7 +47,7 @@ public class TokenOperations {
 	 * Delimits a string into tokens and places them in an ArrayList<String>
 	 * @parameter stringToDelimit = The string to delimit into tokens
 	 */
-	private static void delimitString(String stringToDelimit) {
+	private void delimitString(String stringToDelimit) {
 		StringTokenizer tokens = new StringTokenizer(stringToDelimit);
 		while (tokens.hasMoreTokens()) {
 			String wordBeforeCommaDotRemoved = tokens.nextToken();
@@ -63,7 +65,7 @@ public class TokenOperations {
 	 * Gets the words from the input file in an ArrayList<String>
 	 * @return wordsFromInputFile = An array list of words read in from the input file
 	 */
-	public static ArrayList<String> getWordsFromInputFile() {
+	public ArrayList<String> getWordsFromInputFile() {
 		return wordsFromInputFile;
 	}
 	
@@ -74,7 +76,7 @@ public class TokenOperations {
 	 * @return String = The requested word from the input file
 	 * ArrayList<String>
 	 */
-	public static String getWordsFromInputFile(int indexOfArrayList) {
+	public String getWordsFromInputFile(int indexOfArrayList) {
 		return wordsFromInputFile.get(indexOfArrayList);
 	}
 }

@@ -23,12 +23,14 @@ import java.util.ArrayList;
 
 public class CheckWords {
 	private ArrayList<MisspelledWord> wordsNotInDictionary = null;
+	TokenOperations tokenOps;
 
 	/**
 	 * Default constructor
 	 */
-	public CheckWords() {
+	public CheckWords(TokenOperations tokenOps) {
 		wordsNotInDictionary = new ArrayList<MisspelledWord>();
+		this.tokenOps = tokenOps;
 	}
 
 	/**
@@ -56,11 +58,11 @@ public class CheckWords {
 	public void spellCheckDocument() {
 		boolean wordIsInDictionary = false;
 		
-		for (int i = 0; i < TokenOperations.getWordsFromInputFile().size(); i++) {
-			wordIsInDictionary = isWordInDictionary(TokenOperations.getWordsFromInputFile(i));
+		for (int i = 0; i < tokenOps.getWordsFromInputFile().size(); i++) {
+			wordIsInDictionary = isWordInDictionary(tokenOps.getWordsFromInputFile(i));
 			if (wordIsInDictionary == false) {
 				MisspelledWord misspelledWord = new MisspelledWord();
-				misspelledWord.setMisspelledWord(TokenOperations.getWordsFromInputFile(i));
+				misspelledWord.setMisspelledWord(tokenOps.getWordsFromInputFile(i));
 				misspelledWord.findSuggestions();
 				wordsNotInDictionary.add(misspelledWord);
 			} else {

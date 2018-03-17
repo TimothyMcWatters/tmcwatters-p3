@@ -25,12 +25,15 @@ import javafx.scene.control.TextArea;
 
 public class OpenHandler implements EventHandler<ActionEvent> {
 	private TextArea textArea;
+	private String fileName;
+	private FileOperations fileOps;
 	
 	/*
 	 * Default Constructor
 	 */
-	public OpenHandler(TextArea textArea) {
+	public OpenHandler(TextArea textArea, String fileName) {
 		this.textArea = textArea;
+		this.fileName = fileName;
 	}
 	
 	/*
@@ -38,10 +41,12 @@ public class OpenHandler implements EventHandler<ActionEvent> {
 	 * @parameter action = The action to handle
 	 */
 	public void handle(ActionEvent action) {
+		fileOps = new FileOperations(fileName);
 		String textToDisplay = "";
-		for (int i = 0; i < FileOperations.getLinesFromInputFile().size(); i++) {
-			textToDisplay += FileOperations.getLinesFromInputFile(i);
+		fileOps.readFile();
+		for (int i = 0; i < fileOps.getLinesFromInputFile().size(); i++) {
+			textToDisplay += fileOps.getLinesFromInputFile(i);
 		}
-		textArea.appendText(textToDisplay);
+		textArea.setText(textToDisplay);
 	}
 }

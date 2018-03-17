@@ -131,7 +131,7 @@ public class MisspelledWord {
 	public String toString() {
 		if (suggestedWords.size() > 0) {
 			String string = "";
-			string += ("[" + getMisspelledWord() + "] is misspelled, here are some spelling suggestions: \n");
+			string += ("Suggestions for [" + getMisspelledWord() + "] \n");
 			for (int i = 0; i < suggestedWords.size(); i++) {
 				string += (suggestedWords.get(i) + "\n");
 			}
