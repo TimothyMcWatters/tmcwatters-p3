@@ -29,7 +29,7 @@ public class OpenHandler implements EventHandler<ActionEvent> {
 	private FileOperations fileOps;
 	
 	/*
-	 * Default Constructor
+	 *  Constructor
 	 */
 	public OpenHandler(TextArea textArea, String fileName) {
 		this.textArea = textArea;

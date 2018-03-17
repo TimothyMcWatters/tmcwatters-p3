@@ -23,11 +23,11 @@ import java.util.StringTokenizer;
  */
 
 public class TokenOperations {
-	private static ArrayList<String> wordsFromInputFile = null;
-	FileOperations fileOps;
+	private ArrayList<String> wordsFromInputFile = null;
+	private FileOperations fileOps;
 	
 	/*
-	 * Default Constructor
+	 *  Constructor
 	 */
 	public TokenOperations(FileOperations fileOps) {
 		this.fileOps = fileOps;

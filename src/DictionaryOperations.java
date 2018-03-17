@@ -25,7 +25,7 @@ import java.util.Scanner;
  */
 
 public class DictionaryOperations {
-	private static Scanner inputStream = null;
+	private Scanner inputStream = null;
 	private String dictionaryFileName = "Words.txt";
 	private static HashSet<String> dictionary = null;
 	
@@ -51,7 +51,7 @@ public class DictionaryOperations {
 		populateDictionary();
 	}
 	
-	public static void populateDictionary() {
+	public void populateDictionary() {
 		while (inputStream.hasNextLine()) {
 			insertWordIntoDictionary(inputStream.nextLine());
 		} 

@@ -43,7 +43,6 @@ public class FileOperations {
 	/**
 	 * Reads a file line by line, and calls the helper method populateLinesFromFileArrayList to populate an ArrayList
 	 * with each line read in from the file.
-	 * @param fileName = name of the file to read
 	 */
 	public void readFile() {
 		try {
@@ -88,7 +87,6 @@ public class FileOperations {
 	
 	/* 
 	 * Writes to file
-	 * @parameter outputFileName = The name of the file to write to
 	 * @parameter stringToWriteToFile = The string to write to the file
 	 * 
 	 */

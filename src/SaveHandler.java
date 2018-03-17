@@ -25,7 +25,6 @@ import javafx.scene.control.TextArea;
 
 public class SaveHandler implements EventHandler<ActionEvent> {
 	private TextArea textArea;
-	private String fileName;
 	private FileOperations fileOps;
 	
 	/*
@@ -33,7 +32,6 @@ public class SaveHandler implements EventHandler<ActionEvent> {
 	 */
 	public SaveHandler(TextArea textArea, String fileName) {
 		this.textArea = textArea;
-		this.fileName = fileName;
 		this.fileOps = new FileOperations(fileName);
 	}
 	

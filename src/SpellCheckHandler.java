@@ -28,7 +28,7 @@ public class SpellCheckHandler implements EventHandler<ActionEvent> {
 	private TextArea textArea;
 	
 	/*
-	 * Default Constructor
+	 *  Constructor
 	 */
 	public SpellCheckHandler(String fileName, TextArea textArea) {
 		this.fileName = fileName;
@@ -46,6 +46,9 @@ public class SpellCheckHandler implements EventHandler<ActionEvent> {
 		TokenOperations tokenOps = new TokenOperations(fileOps);
 		tokenOps.populateWordsFromInputFile();
 		CheckWords checkWords = new CheckWords(tokenOps);
+		for (int i = 0; i < 50; ++i) { 
+			System.out.println();
+		}
 		System.out.println("DOCUMENT HAS BEEN SPELL CHECKED, HERE ARE SOME SUGGESTIONS: \n");
 		checkWords.spellCheckDocument();
 	}

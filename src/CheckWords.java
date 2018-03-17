@@ -44,8 +44,7 @@ public class CheckWords {
 	 * Will return the String located at the index parameter from the 
 	 * ArrayList<MisspelledWord> of misspelled words. 
 	 * @param indexOfArrayList = index of ArrayList<MisspelledWord> that is requested to be returned
-	 * @return lineFromInputFile = The line of the input file that has been stored in the
-	 * ArrayList<String>
+	 * @return MisspelledWord = The object of the word that is misspelled w/suggestions 
 	 */
 	public MisspelledWord getWordsNotInDictionary(int indexOfArrayList) {
 		return wordsNotInDictionary.get(indexOfArrayList);

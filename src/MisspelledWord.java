@@ -33,7 +33,8 @@ public class MisspelledWord {
 	}
 	
 	/*
-	 * 
+	 * Tests the MisspelledWord to see if there are any words in the dictionary to use as 
+	 * suggested replacement words
 	 */
 	public void findSuggestions() {
 		oneLetterMissing();
@@ -126,7 +127,7 @@ public class MisspelledWord {
 	}
 
 	/*
-	 * String Representation of the Object
+	 * String Representation of the MisspelledWord Object
 	 */
 	public String toString() {
 		if (suggestedWords.size() > 0) {
