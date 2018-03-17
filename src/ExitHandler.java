@@ -1,4 +1,6 @@
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 
 /**
  * @author Timothy McWatters
@@ -21,13 +23,13 @@ import javafx.event.ActionEvent;
  *		Two letters reversed. 
  */
 
-public class ExitHandler {
+public class ExitHandler implements EventHandler<ActionEvent> {
 	
 	/*
 	 * Handles the Exit action
 	 * @parameter action = The action to handle
 	 */
 	public void handle(ActionEvent action) {
-		
+		Platform.exit();
 	}
 }

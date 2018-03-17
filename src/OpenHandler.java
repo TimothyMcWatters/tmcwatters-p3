@@ -1,4 +1,6 @@
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.TextArea;
 
 /**
  * @author Timothy McWatters
@@ -21,13 +23,25 @@ import javafx.event.ActionEvent;
  *		Two letters reversed. 
  */
 
-public class OpenHandler {
+public class OpenHandler implements EventHandler<ActionEvent> {
+	private TextArea textArea;
+	
+	/*
+	 * Default Constructor
+	 */
+	public OpenHandler(TextArea textArea) {
+		this.textArea = textArea;
+	}
 	
 	/*
 	 * Handles the Open action
 	 * @parameter action = The action to handle
 	 */
 	public void handle(ActionEvent action) {
-		
+		String textToDisplay = "";
+		for (int i = 0; i < FileOperations.getLinesFromInputFile().size(); i++) {
+			textToDisplay += FileOperations.getLinesFromInputFile(i);
+		}
+		textArea.appendText(textToDisplay);
 	}
 }

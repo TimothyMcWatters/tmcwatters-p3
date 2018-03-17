@@ -26,7 +26,7 @@ import java.util.Scanner;
 
 public class DictionaryOperations {
 	private static Scanner inputStream = null;
-	private String dictionaryFileName = "dictionary.txt";
+	private String dictionaryFileName = "Words.txt";
 	private static HashSet<String> dictionary = null;
 	
 	/*

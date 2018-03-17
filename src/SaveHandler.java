@@ -1,4 +1,6 @@
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.TextArea;
 
 /**
  * @author Timothy McWatters
@@ -21,13 +23,25 @@ import javafx.event.ActionEvent;
  *		Two letters reversed. 
  */
 
-public class SaveHandler {
+public class SaveHandler implements EventHandler<ActionEvent> {
+	private TextArea textArea;
+	private String fileName;
+	private FileOperations fileOps;
+	
+	/*
+	 * Default Constructor
+	 */
+	public SaveHandler(TextArea textArea, String fileName, FileOperations fileOps) {
+		this.textArea = textArea;
+		this.fileName = fileName;
+		this.fileOps = fileOps;
+	}
 	
 	/*
 	 * Handles the Save action
 	 * @parameter action = The action to handle
 	 */
 	public void handle(ActionEvent action) {
-		
+		fileOps.writeToFile(fileName, textArea.getText());
 	}
 }

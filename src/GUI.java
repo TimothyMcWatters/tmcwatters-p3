@@ -34,26 +34,30 @@ public class GUI extends Application {
 	 * 
 	 */
 	public void start(Stage stage) {
+		String fileName = "textBoxFile.txt";
+		
 		//Read the dictionary.txt file and populate the dictionary
 		DictionaryOperations dictionaryOps = new DictionaryOperations();
 		dictionaryOps.readDictionaryFile(dictionaryOps.getDictionaryFileName());
+		FileOperations fileOps = new FileOperations();
+		fileOps.readFile(fileName);
 		
 		//create the GUI's menu bar
 		MenuBar menuBar = new MenuBar();
 		
 		//create the menu's for the menu bar
-		Menu file = new Menu();
-		Menu edit = new Menu();
+		Menu file = new Menu("File");
+		Menu edit = new Menu("Edit");
 		
 		//create the items to populate the menu's
-		MenuItem open = new MenuItem();
-		MenuItem save = new MenuItem();
-		MenuItem exit = new MenuItem();
-		MenuItem spellCheck = new MenuItem();
+		MenuItem open = new MenuItem("Open");
+		MenuItem save = new MenuItem("Save");
+		MenuItem exit = new MenuItem("Exit");
+		MenuItem spellCheck = new MenuItem("Spell Check");
 		
 		//populate the menu's with the menu items
 		file.getItems().addAll(open, save, exit);
-		edit.getItems().addAll(spellCheck);
+		edit.getItems().add(spellCheck);
 		
 		//populate the menu bar with menu's
 		menuBar.getMenus().addAll(file, edit);
@@ -61,12 +65,24 @@ public class GUI extends Application {
 		//create the text area
 		TextArea textArea = new TextArea();
 		textArea.setWrapText(true);
+		OpenHandler openAction = new OpenHandler(textArea);
+		SaveHandler saveAction = new SaveHandler(textArea, fileName, fileOps);
+		ExitHandler exitAction = new ExitHandler();
+		SpellCheckHandler spellCheckAction = new SpellCheckHandler(fileName, fileOps);
+	
+		//set menu item actions
+		open.setOnAction(openAction);
+		save.setOnAction(saveAction);
+		exit.setOnAction(exitAction);
+		spellCheck.setOnAction(spellCheckAction);
 		
+		//sets up the boarder pane to hold the GUI items
 		BorderPane borderPane = new BorderPane();
 		borderPane.setTop(menuBar);
 		borderPane.setCenter(textArea);
 		Scene scene = new Scene(borderPane, 350, 400);
 		
+		//displays the GUI
 		stage.setTitle("Tim's Amazing Spell Checker");
 		stage.setScene(scene);
 		stage.show();

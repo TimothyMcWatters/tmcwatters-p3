@@ -1,4 +1,6 @@
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.TextArea;
 
 /**
  * @author Timothy McWatters
@@ -21,13 +23,27 @@ import javafx.event.ActionEvent;
  *		Two letters reversed. 
  */
 
-public class SpellCheckHandler {
+public class SpellCheckHandler implements EventHandler<ActionEvent> {
+	private FileOperations fileOps;
+	private String fileName;
+	
+	/*
+	 * Default Constructor
+	 */
+	public SpellCheckHandler(String fileName, FileOperations fileOps) {
+		this.fileName = fileName;
+		this.fileOps = fileOps;
+	}
 	
 	/*
 	 * Handles the Spell Check action
 	 * @parameter action = The action to handle
 	 */
 	public void handle(ActionEvent action) {
-		
+		fileOps.readFile(fileName);
+		new TokenOperations();
+		TokenOperations.populateWordsFromInputFile();
+		CheckWords checkWords = new CheckWords();
+		checkWords.spellCheckDocument();
 	}
 }
