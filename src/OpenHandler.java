@@ -1,6 +1,10 @@
+import java.io.File;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.TextArea;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 /**
  * @author Timothy McWatters
@@ -25,15 +29,16 @@ import javafx.scene.control.TextArea;
 
 public class OpenHandler implements EventHandler<ActionEvent> {
 	private TextArea textArea;
-	private String fileName;
 	private FileOperations fileOps;
+	private FileChooser fileChooser = new FileChooser();
+	private Stage stage;
 	
 	/*
 	 *  Constructor
 	 */
-	public OpenHandler(TextArea textArea, String fileName) {
+	public OpenHandler(TextArea textArea, Stage stage) {
 		this.textArea = textArea;
-		this.fileName = fileName;
+		this.stage = stage;
 	}
 	
 	/*
@@ -41,12 +46,17 @@ public class OpenHandler implements EventHandler<ActionEvent> {
 	 * @parameter action = The action to handle
 	 */
 	public void handle(ActionEvent action) {
-		fileOps = new FileOperations(fileName);
-		String textToDisplay = "";
-		fileOps.readFile();
-		for (int i = 0; i < fileOps.getLinesFromInputFile().size(); i++) {
-			textToDisplay += fileOps.getLinesFromInputFile(i);
+		File file = fileChooser.showOpenDialog(stage);
+		fileOps = new FileOperations();
+		FileOperations.setFileName(file.getAbsolutePath());
+		if (file != null) {
+			String textToDisplay = "";
+			fileOps.readFile();
+			for (int i = 0; i < fileOps.getLinesFromInputFile().size(); i++) {
+				textToDisplay += fileOps.getLinesFromInputFile(i);
+			}
+			textArea.setText(textToDisplay);
 		}
-		textArea.setText(textToDisplay);
+		
 	}
 }

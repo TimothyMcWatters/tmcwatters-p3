@@ -29,12 +29,8 @@ import javafx.stage.Stage;
  */
 
 public class GUI extends Application {
-	
-	/*
-	 * 
-	 */
+
 	public void start(Stage stage) {
-		String fileName = "textBoxFile.txt";
 		
 		//Read the dictionary.txt file and populate the dictionary
 		DictionaryOperations dictionaryOps = new DictionaryOperations();
@@ -63,10 +59,10 @@ public class GUI extends Application {
 		//create the text area
 		TextArea textArea = new TextArea();
 		textArea.setWrapText(true);
-		OpenHandler openAction = new OpenHandler(textArea, fileName);
-		SaveHandler saveAction = new SaveHandler(textArea, fileName);
+		OpenHandler openAction = new OpenHandler(textArea, stage);
+		SaveHandler saveAction = new SaveHandler(textArea, FileOperations.getFileName());
 		ExitHandler exitAction = new ExitHandler();
-		SpellCheckHandler spellCheckAction = new SpellCheckHandler(fileName, textArea);
+		SpellCheckHandler spellCheckAction = new SpellCheckHandler(textArea);
 	
 		//set menu item actions
 		open.setOnAction(openAction);

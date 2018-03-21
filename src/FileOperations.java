@@ -30,14 +30,13 @@ public class FileOperations {
 	private Scanner inputStream = null;
 	private ArrayList<String> linesFromInputFile = null;
 	private PrintWriter outputStream = null;
-	private String fileName;
+	private static String fileName;
 	
 	/*
 	 * Default Constructor
 	 */
-	public FileOperations(String fileName) {
+	public FileOperations() {
 		linesFromInputFile = new ArrayList<String>();
-		this.fileName = fileName;
 	}
 	
 	/**
@@ -102,4 +101,19 @@ public class FileOperations {
 			System.exit(0);
 		}
 	}
+
+	/**
+	 * @return the fileName
+	 */
+	public static String getFileName() {
+		return fileName;
+	}
+
+	/**
+	 * @param fileName the fileName to set
+	 */
+	public static void setFileName(String fileName) {
+		FileOperations.fileName = fileName;
+	}
+	
 }

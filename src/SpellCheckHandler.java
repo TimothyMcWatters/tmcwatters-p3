@@ -24,14 +24,12 @@ import javafx.scene.control.TextArea;
  */
 
 public class SpellCheckHandler implements EventHandler<ActionEvent> {
-	private String fileName;
 	private TextArea textArea;
 	
 	/*
 	 *  Constructor
 	 */
-	public SpellCheckHandler(String fileName, TextArea textArea) {
-		this.fileName = fileName;
+	public SpellCheckHandler(TextArea textArea) {
 		this.textArea = textArea;
 	}
 	
@@ -40,7 +38,7 @@ public class SpellCheckHandler implements EventHandler<ActionEvent> {
 	 * @parameter action = The action to handle
 	 */
 	public void handle(ActionEvent action) {
-		FileOperations fileOps = new FileOperations(fileName);
+		FileOperations fileOps = new FileOperations();
 		fileOps.writeToFile(textArea.getText());
 		fileOps.readFile();
 		TokenOperations tokenOps = new TokenOperations(fileOps);

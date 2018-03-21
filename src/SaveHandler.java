@@ -32,7 +32,7 @@ public class SaveHandler implements EventHandler<ActionEvent> {
 	 */
 	public SaveHandler(TextArea textArea, String fileName) {
 		this.textArea = textArea;
-		this.fileOps = new FileOperations(fileName);
+		this.fileOps = new FileOperations();
 	}
 	
 	/*
